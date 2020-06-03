@@ -6,7 +6,7 @@ The application currently deployed contains a simple wait statement prior to the
 
 The experiment we setup within the create-experiment-task `Task` will require that the application is responding on average within 200 milliseconds, thus our first experiment with v101 should fail and leave our original v100 microservice running, whilst the v102 experiment should be successful and result in the v100 deployment being removed.
 
-The front end application source code can be found at NEED TO POINT TO IT HERE, whilst the backend service can be found NEED TO POINT TO IT HERE.
+The front end application source code can be found at [here](https://github.com/dibbles/iter8-demo-frontend), whilst the backend service can be found [here](https://github.com/dibbles/iter8-demo-backend).
 
 ## Update Operation 1
 

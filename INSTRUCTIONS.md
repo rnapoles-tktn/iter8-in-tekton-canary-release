@@ -223,9 +223,9 @@ Tekton requires some persistent storage to be available for the pipelines to fun
 
 You now need to clone the sample gitops repository onto your git server and create an access token. 
 
-Cloning your own version of the repository might be as simple as forking the repository or cloning locally and pushing up to your git server.  The gitops repositroy to clone is INSERT NAME IN HERE
+Cloning your own version of the repository might be as simple as forking the repository or cloning locally and pushing up to your git server.  The gitops repositroy to clone is https://github.com/dibbles/iter8-demo-gitops-repo
 
-To create an access token in GitHub/GitHub Enterprise:
+After cloning this repo and pushing into your own GitHub server location, create an access token in GitHub/GitHub Enterprise by:
 
   - click on your profile icon in the top right corner
   - select developer settings -> perosnal access tokens
@@ -246,7 +246,7 @@ Add additional priviledges to the default service account in our iter8-demo-proj
 Next, you need to clone this repository locally
 
 ```
-  $ git clone <NEED THE REPO LOCATION HERE>
+  $ git clone https://github.com/dibbles/iter8-in-tekton-canary-release.git
   $ cd canary-with-iter8-in-tekton
 ```
 

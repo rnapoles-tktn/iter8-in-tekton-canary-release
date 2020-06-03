@@ -16,11 +16,11 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: iter8-demo-1.0.0
+  name: iter8-demo-v100
   namespace: iter8-demo-project
   labels:
     app: demo
-    version: 1.0.0
+    version: v100
 spec:
   selector:
     matchLabels:
@@ -31,11 +31,11 @@ spec:
         sidecar.istio.io/inject: "true"
       labels:
         app: demo
-        version: 1.0.0
+        version: v100
     spec:
       containers:
       - name: demo
-        image: dibbles/iter8-demo:1.0.0
+        image: dibbles/iter8-demo:v100
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
@@ -78,7 +78,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: front
-        image: dibbles/iter8-front:latest
+        image: dibbles/iter8-front:v100
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
