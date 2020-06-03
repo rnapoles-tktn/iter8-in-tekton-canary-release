@@ -8,7 +8,7 @@ The analytics component assesses the behavior of different versions of a microse
 
 The iter8 controller adjusts traffic between the different versions of the microservice based on recommendations from the analytics components' REST API.  Fundamentally, traffic decisions are made by the analytics component and honored by the controller. 
 
-The test and its success criteria are defined in an experiment - a kubernetes custom resource defined by iter8.  In the experiment we define properties such as, the baseline and candidate deployments, the metric to be analysed (e.g iter8_latency: the latency of the service), the number of iterations of the experiment to run and what routing rules to apply, for example - increase traffic to the new service by 20% after each successful iteration.  The metrics that are analysed come from interrogations of prometheus by the analytics component.  In the experiment wether to remove the older deployment and leave the the new one in place.
+The test and its success criteria are defined in an experiment - a kubernetes custom resource defined by iter8.  In the experiment we define properties such as, the baseline and candidate deployments, the metric to be analysed (e.g iter8_latency: the latency of the service), the number of iterations of the experiment to run and what routing rules to apply, for example - increase traffic to the new service by 20% after each successful iteration.  The metrics that are analysed come from interrogations of prometheus by the analytics component.
 
 
 In this sample we have a simple web application made up of a front end service which performs a call to a backend service and displays the result to the user.
