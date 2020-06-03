@@ -1,8 +1,8 @@
-# Using Automated Canary Releases With Iter8 And Tekton In GitOps
+# Performing Automated Canary Releases Using Iter8 In Tekton
 
-In this article we look at using Iter8 in a Tekton pipeline to perform canary releases of a microservice.  With canary releases, a new version of your microservice is deployed to sit alongside your existing version and a percentage of traffic is routed to your new version dependant upon a set of specified rules.  You can then monitor how your new version performs and make decisions about moving all traffic to the new release. 
+In this article we look at using Iter8 in a Tekton pipeline to perform automated canary releases of a microservice.  With canary releases, a new version of your microservice is deployed to sit alongside your existing version and traffic is routed to your new version as specified in a set of rules.  You then monitor how your new version performs and make decisions about increasing the traffic to your new deployment until such a time that all traffic is directed to the new release. 
 
-Iter8 v0.1.0 supports cloud-native, automated canary releases, driven by analytics based on robust statistical techniques. It comprises two components, the iter8-analytics component and the iter8-controller component. 
+Iter8 v0.1.0 automated cloud-native canary releases, driven by analytics based on robust statistical techniques. It comprises two components, the iter8-analytics component and the iter8-controller component. 
 
 The analytics component assesses the behavior of different versions of a microservice by analyzing metrics to determine if the newer version performs to the specified success criteria. 
 
@@ -11,11 +11,13 @@ The iter8 controller adjusts traffic between the different versions of the micro
 The test and its success criteria are defined in an experiment - a kubernetes custom resource defined by iter8.  In the experiment we define properties such as, the baseline and candidate deployments, the metric to be analysed (e.g iter8_latency: the latency of the service), the number of iterations of the experiment to run and what routing rules to apply, for example - increase traffic to the new service by 20% after each successful iteration.  The metrics that are analysed come from interrogations of prometheus by the analytics component.
 
 
-In this sample we have a simple web application made up of a front end service which performs a call to a backend service and displays the result to the user.
+## Overview Of This Tutorial
+
+In this tutorial we have a simple web application made up of a front end service which performs a call to a backend service and displays the result to the user.
 
 ![Initial Application Flow](./images/application.png?raw=true "View Of The Two Services Communicating")
 
-We will be making a change to the deployment yaml stored in a git repository, causing a webhook to trigger a Tekton pipeline that will create and run the Iter8 experiment.  We will generate web traffic to the application within the pipeline itself, faking user requests as there is no live user data for iter8 to analyse.  Iter8 will make use of istio to control the split of traffic between the older and newer deployments.
+We will be making a change to the deployment yaml stored in a git repository, causing a webhook to trigger a Tekton pipeline that will create and run the Iter8 experiment.  We will generate web traffic to the application within the pipeline itself, faking user requests (as this is not a live application with actual users) for iter8 to analyse.  Iter8 will make use of istio to control the split of traffic between the older and newer deployments.
 
 ![Iter8 Experiment Flow](./images/experiment-architecture.png?raw=true "View Showing Iter8 Components with Application")
 
@@ -25,7 +27,7 @@ The pipeline we will use in the example will run through 5 tasks, creating the i
 
 The result of the experiment will dictate which deployment of the microservice is left running.  We will run through the code changes twice, once testing a deployment of the microservice that does not not meet the success criteria and then again with a version that does.
 
-More on the Experiment CRD can be found in the iter8 [docs](https://github.com/iter8-tools/docs), but ensure you look at the relevant version of the documents for your iter8 installation.
+More on the Experiment CRD can be found in the iter8 [docs](https://github.com/iter8-tools/docs), but ensure you look at the relevant version of the documentation for your iter8 installation.
 
 The Experiment as defined in this sample's pipeline Task:
 
